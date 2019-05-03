@@ -9,22 +9,7 @@ const jwtOptions = {};
 //extracting jwt and 
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 jwtOptions.secretOrKey = config.secretOrKey;
-/*
-module.exports = passport => {
-  passport.use(
-    new JwtStrategy(jwtOptions, (jwt_payload, done) => {
-      User.findById(jwt_payload.id)
-        .then(user => {
-          if (user) {
-            return done(null, user);
-          }
-          return done(null, false);
-        })
-        .catch(err => console.log(err));
-    })
-  );
-};
-*/
+
 const jwtLogin = new JwtStrategy(jwtOptions, (jwt_payload, callback) => {
     User.findById(jwt_payload.id)
     .then(user => {
